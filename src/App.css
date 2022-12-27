@@ -1,0 +1,173 @@
+@media only screen and (min-width: 768px) {
+	.two-column-layout .Polaris-Layout .Polaris-Layout__Section--oneHalf{
+		flex: 1 1 20rem;
+	}
+}
+
+.preview-holder{
+	background-image: url(./Assets/preview_holder_image.jpg);
+	background-position: center;
+	background-size: 100% 100%;
+    height: 307px;
+    background-repeat: no-repeat;
+	position: relative;
+}
+.apprearance-thumbnails{
+	display: flex;
+	gap: 10px;
+}
+.Color-Inputs .Polaris-Stack__Item img {
+    display: none;
+}
+.Color-Inputs .Polaris-Stack__Item input[type="color"] {
+    visibility: hidden;
+}
+.Color-Inputs .Polaris-Stack {
+    align-items: end;
+    margin-top: -5px;
+}
+.Color-Inputs .Color-Circle {
+    width: 58px;
+    height: 58px;
+    border: 1px solid transparent;
+    background-position: 50%;
+    border-radius: 4px;
+    color: transparent;
+    display: inline-block;
+    cursor: pointer;
+}
+.Color-Circle-Border {
+    border-color: #CCCCCC !important;
+}
+.Color-Inputs .Color-Property .Polaris-Text--root {
+    text-transform: capitalize;
+}
+
+
+/* Popup design 1 */
+.id1.popup-card-holder{
+	max-width: 250px;
+	height: 110px;
+	position: absolute;
+	top: 35px;
+	right: 10px;
+	width: 100%;
+}
+.id1.popup-card-holder .Polaris-Card.popup-card-wrapper{
+	padding: 10px;
+	border-radius: 30px;
+	position: relative;
+	height: 100%;
+}
+.id1.popup-card-holder .Polaris-MediaCard__MediaContainer{
+	display: flex;
+	align-items: center;
+}
+.id1.popup-card-holder .Polaris-MediaCard__MediaContainer img{
+    width: 80%;
+}
+.id1.popup-card-holder .Polaris-Banner__Dismiss{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.id1.popup-card-holder .Polaris-ButtonGroup__Item{
+	margin-left: 0;
+	margin-top: 5px;
+}
+.id1.popup-card-holder .Polaris-ButtonGroup{
+	margin-left: 0;
+}
+.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button{
+	color: #fff;
+    background: #000;
+    border-radius: 30px;
+	padding: 5px 10px;
+	min-height: auto;
+	min-width: auto;
+}
+.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button .Polaris-Button__Content{
+	font-size: 12px;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer{
+	position: static;
+	align-self: end;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
+	padding: 0;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section .Polaris-Stack__Item{
+	margin-top: 0;
+	line-height: 1;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
+	font-size: 14px;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
+	font-size: 12px;
+}
+
+
+/* popup design 2 */
+/* Popup design 1 */
+.id1.popup-card-holder{
+	max-width: 250px;
+	height: 110px;
+	position: absolute;
+	top: 35px;
+	right: 10px;
+	width: 100%;
+}
+.id1.popup-card-holder .Polaris-Card.popup-card-wrapper{
+	padding: 10px;
+	border-radius: 30px;
+	position: relative;
+	height: 100%;
+}
+.id1.popup-card-holder .Polaris-MediaCard__MediaContainer{
+	display: flex;
+	align-items: center;
+}
+.id1.popup-card-holder .Polaris-MediaCard__MediaContainer img{
+    width: 80%;
+}
+.id1.popup-card-holder .Polaris-Banner__Dismiss{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.id1.popup-card-holder .Polaris-ButtonGroup__Item{
+	margin-left: 0;
+	margin-top: 5px;
+}
+.id1.popup-card-holder .Polaris-ButtonGroup{
+	margin-left: 0;
+}
+.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button{
+	color: #fff;
+    background: #000;
+    border-radius: 30px;
+	padding: 5px 10px;
+	min-height: auto;
+	min-width: auto;
+}
+.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button .Polaris-Button__Content{
+	font-size: 12px;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer{
+	position: static;
+	align-self: end;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
+	padding: 0;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section .Polaris-Stack__Item{
+	margin-top: 0;
+	line-height: 1;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
+	font-size: 14px;
+}
+.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
+	font-size: 12px;
+}
