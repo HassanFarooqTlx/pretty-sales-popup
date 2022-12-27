@@ -323,6 +323,7 @@ export default function Home() {
 									<Text variant="bodyMd" as="p" color="subdued">
 										Preview
 									</Text>
+									
 									<div className='preview-placeholder'>
 										<div className='preview-holder'>
 											<div className='popup-card-holder id1'>
