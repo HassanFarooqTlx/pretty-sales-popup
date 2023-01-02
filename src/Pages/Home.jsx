@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
 	CalloutCard, Page, Badge, Card, Layout, Text, TextField, Stack, Button, Divider, AlphaStack, ButtonGroup,
 	Thumbnail, PageActions, MediaCard
 } from '@shopify/polaris';
-import { useState, useCallback } from 'react';
+
 import cardImg from '../Assets/group_198.png';
 import previewImg from '../Assets/preview_img.png';
 import thumbnail_1 from '../Assets/thumbnail_1.png';
@@ -12,16 +12,21 @@ import thumbnail_3 from '../Assets/thumbnail_3.png';
 import popupImg from '../Assets/eclipse_10.png';
 
 export default function Home() {
-	const [textFieldValue, setTextFieldValue] = useState(
+	const [nameShow, setNameShow] = useState(false);
+	const [template, setTemplate] = useState(1);
+	const [position, setPosition] = useState(1);
+	const [popupTimeFieldValue, setPopupTimeFieldValue] = useState(15);
+	const [popupShow, setPopupShow] = useState(true);
+
+
+	const [popUpMessage, setPopUpMessage] = useState(
 		'From {country}, Just bought this',
 	);
 
-	const handleTextFieldChange = useCallback(
-		(value) => setTextFieldValue(value),
+	const handlePopupMessage = useCallback(
+		(value) => setPopUpMessage(value),
 		[],
 	);
-
-	const [popupTimeFieldValue, setPopupTimeFieldValue] = useState('15');
 
 	const handlepopupTimeFieldChange = useCallback(
 		(value) => setPopupTimeFieldValue(value),
@@ -34,13 +39,35 @@ export default function Home() {
 		primaryPopupText: '#000000',
 		secondaryPopupText: '#ffffff',
 	});
+
 	const handleDesignColors = (e) => {
 		setColorValues({ ...colorValues, [e.target.name]: e.target.value })
 	}
+
+	const handleResetColors = () => {
+		setColorValues({
+			primaryPopupColor: '#ffffff',
+			secondaryPopupColor: '#000000',
+			primaryPopupText: '#000000',
+			secondaryPopupText: '#ffffff',
+		})
+	}
+
+	useEffect(() => {
+		setPopupShow(true)
+		let time = popupTimeFieldValue * 1000;
+
+		const timer = setTimeout(() => {
+			setPopupShow(false)
+		}, time);
+		return () => clearTimeout(timer);
+	}, [popupTimeFieldValue]);
+
+
+
 	return (
 		<div>
-			<Page
-			>
+			<Page>
 				<CalloutCard
 					title="Customize the style of your checkout"
 					illustration={cardImg}
@@ -59,39 +86,50 @@ export default function Home() {
 								<TextField
 									label="Popup message"
 									type="text"
-									value={textFieldValue}
-									onChange={handleTextFieldChange}
+									value={popUpMessage}
+									onChange={handlePopupMessage}
 									helpText="Edit the message you would like displayed on your popups."
 									autoComplete="off"
 								/>
 								<br />
-								<TextField
-									label="How long your popups will be displayed"
-									type="text"
-									value={popupTimeFieldValue}
-									onChange={handlepopupTimeFieldChange}
-									suffix="seconds"
-									autoComplete="off"
-								/>
-								<br />
-								<br />
-								<Stack>
-									<Stack.Item fill>
-										<Text variant="bodyMd" as="p">
-											Customer name is showing
-										</Text>
-									</Stack.Item>
-									<Stack.Item>
-										<Button primary>Hide name</Button>
-									</Stack.Item>
-								</Stack>
-								<br />
-								<br />
-								<AlphaStack gap="5" fullWidth>
-									<Divider borderStyle="base" />
-								</AlphaStack>
-								<br />
-								<br />
+								<div className='popup-duration-field'>
+									<TextField
+										label="How long your popups will be displayed"
+										type="text"
+										value={popupTimeFieldValue}
+										onChange={handlepopupTimeFieldChange}
+										suffix="seconds"
+										autoComplete="off"
+									/>
+								</div>
+								<div className='customer-name'>
+									<Stack>
+										<Stack.Item fill>
+											<Text variant="bodyMd" as="p">
+												{`Customer name is ${nameShow ? 'hidden' : 'showing'}`}
+											</Text>
+										</Stack.Item>
+										<Stack.Item>
+											<span className='hide-name-btn'>
+												<Button primary
+													onClick={() => setNameShow(!nameShow)}>
+													{
+														nameShow ?
+															'Show name' :
+															'Hide name'
+													}
+
+												</Button>
+											</span>
+										</Stack.Item>
+									</Stack>
+								</div>
+								<div className='position-btns'>
+									<AlphaStack gap="5" fullWidth>
+										<Divider borderStyle="base" />
+									</AlphaStack>
+								</div>
+
 								<Text variant="bodyMd" as="p">
 									Popup position
 								</Text>
@@ -101,10 +139,18 @@ export default function Home() {
 								</Text>
 								<br />
 								<ButtonGroup segmented>
-									<Button outline>Top Left</Button>
-									<Button primary>Top Right</Button>
-									<Button outline>Bottom Left</Button>
-									<Button outline>Bottom Right</Button>
+									<span className={`${position === 1 ? 'active' : ''} position-btn `} onClick={() => setPosition(1)}>
+										<Button outline>Top Left</Button>
+									</span>
+									<span className={`${position === 2 ? 'active' : ''} position-btn `} onClick={() => setPosition(2)}>
+										<Button outline>Top Right</Button>
+									</span>
+									<span className={`${position === 3 ? 'active' : ''} position-btn `} onClick={() => setPosition(3)}>
+										<Button outline>Bottom Left</Button>
+									</span>
+									<span className={`${position === 4 ? 'active' : ''} position-btn `} onClick={() => setPosition(4)}>
+										<Button outline>Bottom Right</Button>
+									</span>
 								</ButtonGroup>
 								<br />
 								<br />
@@ -118,22 +164,29 @@ export default function Home() {
 								</Text>
 								<br />
 								<br />
-								<div className="apprearance-thumbnails">
-									<Thumbnail
-										source={thumbnail_1}
-										size="large"
-										alt=""
-									/>
-									<Thumbnail
-										source={thumbnail_2}
-										size="large"
-										alt=""
-									/>
-									<Thumbnail
-										source={thumbnail_3}
-										size="large"
-										alt=""
-									/>
+								<div className="appearance-thumbnails">
+									<span className={`${template === 1 ? 'active' : ''} popup-thumbnail `} onClick={() => setTemplate(1)}>
+										<Thumbnail
+											source={thumbnail_1}
+											size="large"
+											alt=""
+										/>
+									</span>
+									<span className={`${template === 2 ? 'active' : ''} popup-thumbnail `} onClick={() => setTemplate(2)}>
+										<Thumbnail
+											source={thumbnail_2}
+											size="large"
+											alt=""
+										/>
+									</span>
+									<span className={`${template === 3 ? 'active' : ''} popup-thumbnail `} onClick={() => setTemplate(3)}>
+										<Thumbnail
+											source={thumbnail_3}
+											size="large"
+											alt=""
+										/>
+									</span>
+
 								</div>
 
 								<div className='Color-Inputs'>
@@ -311,68 +364,69 @@ export default function Home() {
 										</span>
 									</Stack>
 									<br />
-									<Button plain>Reset colors to original values</Button>
-
+									<Button onClick={handleResetColors} plain>Reset colors to original values</Button>
 								</div>
-
-
-
 							</Layout.Section>
+
 							<Layout.Section oneHalf>
 								<div className='preview-part'>
 									<Text variant="bodyMd" as="p" color="subdued">
 										Preview
 									</Text>
-									
+
 									<div className='preview-placeholder'>
 										<div className='preview-holder'>
-											<div className='popup-card-holder id1'>
-												<div className="Polaris-Card popup-card-wrapper">
-													<div className="Polaris-MediaCard">
-														<div className="Polaris-MediaCard__MediaContainer">
-															<img
-																alt=""
-																src={popupImg}
-															/>
-														</div>
-														<div className="Polaris-MediaCard__InfoContainer">
-															<div className="Polaris-Card__Section">
-																<div class="Polaris-Banner__Dismiss">
-																	<button class="Polaris-Button Polaris-Button--plain Polaris-Button--iconOnly" aria-label="Dismiss notification" type="button">
-																		<span class="Polaris-Button__Content">
-																			<span class="Polaris-Button__Icon">
-																				<span class="Polaris-Icon">
-																					<span class="Polaris-Text--root Polaris-Text--bodySm Polaris-Text--regular Polaris-Text--visuallyHidden">
+											{popupShow &&
+												<div className={`id${template} popup-card-holder position${position}`}>
+													<div className="Polaris-Card popup-card-wrapper">
+														<div className="Polaris-MediaCard">
+															<div className="Polaris-MediaCard__MediaContainer">
+																<img
+																	alt=""
+																	src={popupImg}
+																/>
+															</div>
+															<div className="Polaris-MediaCard__InfoContainer">
+																<div className="Polaris-Card__Section">
+																	<div className="Polaris-Banner__Dismiss">
+																		<button className="Polaris-Button Polaris-Button--plain Polaris-Button--iconOnly" aria-label="Dismiss notification" type="button">
+																			<span className="Polaris-Button__Content">
+																				<span className="Polaris-Button__Icon">
+																					<span className="Polaris-Icon">
+																						<span className="Polaris-Text--root Polaris-Text--bodySm Polaris-Text--regular Polaris-Text--visuallyHidden">
+																						</span>
+																						<svg viewBox="0 0 20 20" className="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+																							<path d="M6.707 5.293a1 1 0 0 0-1.414 1.414l3.293 3.293-3.293 3.293a1 1 0 1 0 1.414 1.414l3.293-3.293 3.293 3.293a1 1 0 0 0 1.414-1.414l-3.293-3.293 3.293-3.293a1 1 0 0 0-1.414-1.414l-3.293 3.293-3.293-3.293Z">
+																							</path>
+																						</svg>
 																					</span>
-																					<svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-																						<path d="M6.707 5.293a1 1 0 0 0-1.414 1.414l3.293 3.293-3.293 3.293a1 1 0 1 0 1.414 1.414l3.293-3.293 3.293 3.293a1 1 0 0 0 1.414-1.414l-3.293-3.293 3.293-3.293a1 1 0 0 0-1.414-1.414l-3.293 3.293-3.293-3.293Z">
-																						</path>
-																					</svg>
 																				</span>
 																			</span>
-																		</span>
-																	</button>
-																</div>
-																<div className="Polaris-Stack Polaris-Stack--vertical Polaris-Stack--spacingTight">
-																	<div className="Polaris-Stack__Item">
-																		<div className="Polaris-MediaCard__Heading">
-																			<h2 className="Polaris-Text--root Polaris-Text--headingMd Polaris-Text--semibold">Anna</h2>
+																		</button>
+																	</div>
+																	<div className="Polaris-Stack Polaris-Stack--vertical Polaris-Stack--spacingTight">
+																		<div className="Polaris-Stack__Item">
+																			<div className={`${nameShow ? 'name-hidden' : ''} Polaris-MediaCard__Heading`}>
+																				<h2 className="Polaris-Text--root Polaris-Text--headingMd Polaris-Text--semibold">Anna</h2>
+																			</div>
 																		</div>
-																	</div>
-																	<div className="Polaris-Stack__Item">
-																		<p>From USA, bought this</p>
-																		<small>2 Minutes Ago</small>
-																	</div>
-																	<div className="Polaris-Stack__Item">
-																		<div className="Polaris-MediaCard__ActionContainer">
-																			<div className="Polaris-ButtonGroup">
-																				<div className="Polaris-ButtonGroup__Item">
-																					<div className="Polaris-MediaCard__PrimaryAction">
-																						<button className="Polaris-Button" type="button">
-																							<span className="Polaris-Button__Content">
-																								<span className="Polaris-Button__Text">USD 39.99</span>
-																							</span>
-																						</button>
+																		<div className="Polaris-Stack__Item">
+																			<p style={{ Color: colorValues?.primaryPopupColor }}>{popUpMessage}</p>
+																		</div>
+																		<div className="Polaris-Stack__Item">
+																			<small>2 Minutes Ago</small>
+																		</div>
+																		<div className="Polaris-Stack__Item">
+																			<div className="Polaris-MediaCard__ActionContainer">
+																				<div className="Polaris-ButtonGroup">
+																					<div className="Polaris-ButtonGroup__Item">
+																						<div className="Polaris-MediaCard__PrimaryAction">
+																							<button className="Polaris-Button" type="button">
+																								<span className="Polaris-Button__Content">
+																									<span className="Polaris-Button__Text">USD 39.99</span>
+																								</span>
+																							</button>
+																						</div>
 																					</div>
 																				</div>
 																			</div>
@@ -383,7 +437,7 @@ export default function Home() {
 														</div>
 													</div>
 												</div>
-											</div>
+											}
 										</div>
 									</div>
 									<Text variant="bodyMd" as="p" style={{ textAlign: "center" }}>
@@ -396,10 +450,6 @@ export default function Home() {
 					</div>
 
 				</Card>
-
-
-
-
 				<PageActions
 					primaryAction={{
 						content: 'Save changes',

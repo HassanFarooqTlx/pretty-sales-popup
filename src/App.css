@@ -3,7 +3,13 @@
 		flex: 1 1 20rem;
 	}
 }
-
+.position-btn.active Button{
+	background: rgba(0, 94, 71, 1);
+	color: #fff;
+}
+.popup-duration-field, .customer-name, .position-btns{
+	margin-bottom: 30px;
+}
 .preview-holder{
 	background-image: url(./Assets/preview_holder_image.jpg);
 	background-position: center;
@@ -12,9 +18,18 @@
     background-repeat: no-repeat;
 	position: relative;
 }
-.apprearance-thumbnails{
+.appearance-thumbnails{
 	display: flex;
 	gap: 10px;
+}
+.popup-thumbnail{
+	cursor: pointer;
+}
+.appearance-thumbnails .popup-thumbnail.active .Polaris-Thumbnail{
+	background: rgba(0, 94, 71, 1);
+}
+.appearance-thumbnails span img{
+	width: 90%;
 }
 .Color-Inputs .Polaris-Stack__Item img {
     display: none;
@@ -49,13 +64,34 @@
 	max-width: 250px;
 	height: 110px;
 	position: absolute;
-	top: 35px;
-	right: 10px;
 	width: 100%;
 }
+/* top-left */
+.id1.popup-card-holder.position1{
+	top: 35px;
+	right: auto;
+	left: 10px;
+}
+/* top right */
+.id1.popup-card-holder.position2{ 
+	top: 35px;
+	right: 10px;
+	left: auto;
+}
+/* bottom left */
+.id1.popup-card-holder.position3{
+	bottom: 10px;
+	left: 10px;
+}
+/* bottom right */
+.id1.popup-card-holder.position4{
+	right: 10px;
+    bottom: 10px;
+}
+
 .id1.popup-card-holder .Polaris-Card.popup-card-wrapper{
 	padding: 10px;
-	border-radius: 30px;
+	border-radius: 20px;
 	position: relative;
 	height: 100%;
 }
@@ -102,48 +138,94 @@
 }
 .id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
 	font-size: 14px;
+	font-weight: bold;
 }
 .id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
-	font-size: 12px;
+	font-size: 14px;
+	font-weight: 600;
 }
+.Polaris-MediaCard__Heading.name-hidden h2 {
+	text-indent: -9999px;
+	line-height: 0;
+  }
+  .Polaris-MediaCard__Heading.name-hidden h2::after {
+	content: "A***";
+	text-indent: 0;
+	display: block;
+	line-height: initial; 
+  }
 
 
 /* popup design 2 */
-/* Popup design 1 */
-.id1.popup-card-holder{
-	max-width: 250px;
-	height: 110px;
+.id2.popup-card-holder{
+	max-width: 180px;
+	height: 200px;
 	position: absolute;
-	top: 35px;
-	right: 10px;
 	width: 100%;
 }
-.id1.popup-card-holder .Polaris-Card.popup-card-wrapper{
+/* top-left */
+.id2.popup-card-holder.position1{
+	top: 35px;
+	right: auto;
+	left: 10px;
+}
+/* top right */
+.id2.popup-card-holder.position2{ 
+	top: 35px;
+	right: 10px;
+	left: auto;
+}
+/* bottom left */
+.id2.popup-card-holder.position3{
+	bottom: 10px;
+	left: 10px;
+}
+/* bottom right */
+.id2.popup-card-holder.position4{
+	right: 10px;
+    bottom: 10px;
+}
+.id2.popup-card-holder .Polaris-MediaCard{
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.id2.popup-card-holder .Polaris-Card.popup-card-wrapper{
 	padding: 10px;
-	border-radius: 30px;
+	border-radius: 20px;
 	position: relative;
 	height: 100%;
 }
-.id1.popup-card-holder .Polaris-MediaCard__MediaContainer{
+.id2.popup-card-holder .Polaris-MediaCard__MediaContainer{
 	display: flex;
 	align-items: center;
+	width: 65px;
 }
-.id1.popup-card-holder .Polaris-MediaCard__MediaContainer img{
-    width: 80%;
+.id2.popup-card-holder .Polaris-MediaCard__MediaContainer,
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer{
+	flex-basis: auto;
 }
-.id1.popup-card-holder .Polaris-Banner__Dismiss{
+.id2.popup-card-holder .Polaris-MediaCard__MediaContainer img{
+    width: 100%;
+}
+.id2.popup-card-holder .Polaris-Banner__Dismiss{
 	position: absolute;
 	top: 10px;
 	right: 10px;
 }
-.id1.popup-card-holder .Polaris-ButtonGroup__Item{
+.id2.popup-card-holder .Polaris-ButtonGroup__Item{
 	margin-left: 0;
-	margin-top: 5px;
+	margin-top: 8px;
 }
-.id1.popup-card-holder .Polaris-ButtonGroup{
+.id2.popup-card-holder .Polaris-ButtonGroup{
 	margin-left: 0;
+	justify-content: center;
 }
-.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button{
+.id2.popup-card-holder .Polaris-MediaCard__PrimaryAction{
+	margin-right: 0;
+}
+.id2.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button{
 	color: #fff;
     background: #000;
     border-radius: 30px;
@@ -151,23 +233,160 @@
 	min-height: auto;
 	min-width: auto;
 }
-.id1.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button .Polaris-Button__Content{
+.id2.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button .Polaris-Button__Content{
 	font-size: 12px;
 }
-.id1.popup-card-holder .Polaris-MediaCard__InfoContainer{
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer{
 	position: static;
-	align-self: end;
+	width: 100%;
+    text-align: center;
 }
-.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
 	padding: 0;
 }
-.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section .Polaris-Stack__Item{
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section .Polaris-Stack__Item{
 	margin-top: 0;
-	line-height: 1;
+	line-height: 1.2;
 }
-.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
+.id2.popup-card-holder .Polaris-MediaCard__Heading{
+	margin-right: 0;
+}
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
 	font-size: 14px;
+	font-weight: bold;
 }
-.id1.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
+.id2.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
+	font-size: 14px;
+	font-weight: 600;
+}
+
+
+/* popup design 3 */
+.id3.popup-card-holder{
+	max-width: 180px;
+	height: 200px;
+	position: absolute;
+	width: 100%;
+}
+/* top-left */
+.id3.popup-card-holder.position1{
+	top: 35px;
+	right: auto;
+	left: 10px;
+}
+/* top right */
+.id3.popup-card-holder.position2{ 
+	top: 35px;
+	right: 10px;
+	left: auto;
+}
+/* bottom left */
+.id3.popup-card-holder.position3{
+	bottom: 10px;
+	left: 10px;
+}
+/* bottom right */
+.id3.popup-card-holder.position4{
+	right: 10px;
+    bottom: 10px;
+}
+.id3.popup-card-holder .Polaris-MediaCard{
+	flex-flow: column-reverse;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.id3.popup-card-holder .Polaris-Card.popup-card-wrapper{
+	border-radius: 20px;
+	position: relative;
+	height: 100%;
+	padding: 0;
+	overflow: hidden;
+}
+.id3.popup-card-holder .Polaris-MediaCard__MediaContainer{
+	display: flex;
+	align-items: center;
+	width: 80px;
+	margin-bottom: 20px;
+}
+.id3.popup-card-holder .Polaris-Stack.Polaris-Stack--vertical {
+    padding-left: 15px;
+    align-items: flex-start;
+}
+.id3.popup-card-holder .Polaris-Stack.Polaris-Stack--vertical .Polaris-Stack__Item:first-child{
+	order: 1;
+}
+.id3.popup-card-holder .Polaris-Stack.Polaris-Stack--vertical .Polaris-Stack__Item:nth-child(2){
+	order: 2;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
+	text-align: left
+}
+.id3.popup-card-holder .Polaris-MediaCard__MediaContainer,
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer{
+	flex-basis: auto;
+}
+.id3.popup-card-holder .Polaris-MediaCard__MediaContainer img{
+    width: 100%;
+}
+.id3.popup-card-holder .Polaris-Banner__Dismiss{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.id3.popup-card-holder .Polaris-ButtonGroup__Item{
+	margin-left: 0;
+	margin-top: 8px;
+}
+.id3.popup-card-holder .Polaris-ButtonGroup{
+	margin-left: 0;
+	justify-content: center;
+}
+.id3.popup-card-holder .Polaris-MediaCard__PrimaryAction{
+	margin-right: 0;
+}
+.id3.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button{
+	color: #fff;
+    background: #000;
+	min-height: auto;
+	min-width: auto;
+	background: #000;
+    padding: 0;
+    border: 0;
+}
+.id3.popup-card-holder .Polaris-MediaCard__PrimaryAction .Polaris-Button .Polaris-Button__Content{
 	font-size: 12px;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer{
+	position: static;
+	width: 100%;
+    text-align: center;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section{
+	padding: 0;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Card__Section .Polaris-Stack__Item{
+	margin-top: 0;
+	line-height: 1.2;
+}
+.id3.popup-card-holder .Polaris-MediaCard__Heading{
+	margin-right: 0;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__Heading h2{
+	font-size: 14px;
+	font-weight: bold;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-Stack__Item p{
+	font-size: 14px;
+	font-weight: 600;
+}
+.id3.popup-card-holder .Polaris-MediaCard__InfoContainer .Polaris-MediaCard__ActionContainer{
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #000;
+    padding: 8px;
+    left: 0;
+    text-align: center;
 }
